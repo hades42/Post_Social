@@ -19,7 +19,7 @@ function redraw() {
     content += "</ul>";
 
     // update the page
-    document.getElementById("target").innerHTML = content;
+    // document.getElementById("target").innerHTML = content;
 }
 
 window.onload = function() {
