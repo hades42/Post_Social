@@ -8,7 +8,7 @@
  *
  */
 
-export {splitHash};
+export {splitHash, getDate};
 
 // splitHash - given a hash path like "#!/people/2" 
 //   return an object with properties `path` ("people") and `id` (2)
@@ -24,4 +24,8 @@ function splitHash(hash) {
     } else {
         return { path: "" }
     }
+}
+
+function getDate(date){
+    return date.slice(0,10);
 }
