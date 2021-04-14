@@ -37,8 +37,8 @@
       "via": "posts"
     },
     "p_comment": {
-      "via": "c_post",
-      "collection": "comment"
+      "collection": "comment",
+      "via": "post"
     }
   }
 }

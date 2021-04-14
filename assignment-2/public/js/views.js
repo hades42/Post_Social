@@ -13,8 +13,8 @@ function threePost(data, target) {
   let postContainer = document.createElement("div");
   postContainer.className = "threePost";
 
-  data.forEach((el,i) => {
-    let anchor = document.createElement("div");
+  data.forEach((el, i) => {
+    let anchor = document.createElement("a");
     anchor.className = `flowtow flowtow-${i + 1}`;
     anchor.id = `${el.id}`;
     anchor.href = `/#!/posts/${el.id}`;
@@ -34,7 +34,7 @@ function threePost(data, target) {
         `;
     anchor.innerHTML = post;
     postContainer.appendChild(anchor);
-  })
+  });
   target.appendChild(postContainer);
 }
 
@@ -53,7 +53,9 @@ function tenRecentPost(data, target) {
     let post = document.createElement("div");
     post.id = element.id;
     post.className = `recentPost recentPost-${index}`;
-    post.innerHTML = `<a href="/#!/posts/${element.id}" class="recentPost-image">
+    post.innerHTML = `<a href="/#!/posts/${
+      element.id
+    }" class="recentPost-image">
               <img src="${element.p_url}" alt="">
             </a>
             <div class="recentPost-info">
@@ -61,7 +63,9 @@ function tenRecentPost(data, target) {
               <h3 class="recentPost-author">${element.p_author.username}</h3>
               <div class="recentPost-user">
                 <div class="recentPost-liked">
-                  <button id="${element.id}" type="button" class="recentPost-heart like"><i class="fas fa-thumbs-up"></i>Like</button>
+                  <button id="${
+                    element.id
+                  }" type="button" class="recentPost-heart Like"><i class="fas fa-thumbs-up"></i></button>
                   <p>${element.p_likes}</p>
                 </div>
                 <div class="recentPost-time">${getDate(
@@ -90,7 +94,9 @@ function tenPopularPost(data, target) {
     let post = document.createElement("div");
     post.id = element.id;
     post.className = `popularPost popularPost-${index}`;
-    post.innerHTML = `<a href="/#!/posts/${element.id}" class="popularPost-image">
+    post.innerHTML = `<a href="/#!/posts/${
+      element.id
+    }" class="popularPost-image">
               <img src="${element.p_url}" alt="">
             </a>
             <div class="popularPost-info">
@@ -98,7 +104,9 @@ function tenPopularPost(data, target) {
               <h3 class="popularPost-author">${element.p_author.username}</h3>
               <div class="popularPost-user">
                 <div class="popularPost-liked">
-                  <button id="${element.id}" type="button" class="popularPost-heart like"><i class="fas fa-thumbs-up"></i>Like</button>
+                  <button id="${
+                    element.id
+                  }" type="button" class="popularPost-heart Like"><i class="fas fa-thumbs-up"></i></button>
                   <p>${element.p_likes}</p>
                 </div>
                 <div class="popularPost-time">${getDate(
@@ -112,7 +120,7 @@ function tenPopularPost(data, target) {
   target.appendChild(container);
 }
 
-function onePost(data,target){
+function onePost(data, target) {
   let container = document.createElement("div");
   container.className = "showPost";
 
@@ -121,7 +129,9 @@ function onePost(data,target){
         </div>
         <ul class="showPost-feature">
           <li class="showPost-liked">
-            <button id="${data.id}" type="button" class="like"><i class="fas fa-thumbs-up"></i>Like</button>
+            <button id="${
+              data.id
+            }" type="button" class="Like"><i class="fas fa-thumbs-up"></i></button>
             <p>${data.p_likes}</p>
           </li>
           <li class="showPost-comment">
@@ -141,20 +151,112 @@ function onePost(data,target){
           <input class="textInput" type="text" placeholder="Comment">
           <input class="buttonInput" type="submit" value="Submit">
         </form>`;
-        container.innerHTML = content;
-        target.appendChild(container);
-        
-      let comContent = document.createElement("ul");
-      comContent.className = "showPost-comContent";
-      data.p_comment.forEach(el => {
-        let li = document.createElement("li");
-        li.innerHTML = el.c_content;
-        comContent.appendChild(li);
-      })
+  container.innerHTML = content;
+  target.appendChild(container);
 
-     let commentContainer = document.querySelector(".showPost-commentContainer");
-     commentContainer.appendChild(comContent);
+  let comContent = document.createElement("ul");
+  comContent.className = "showPost-comContent";
+  data.p_comment.forEach((el) => {
+    let li = document.createElement("li");
+    li.innerHTML = el.c_content;
+    comContent.appendChild(li);
+  });
 
+  let commentContainer = document.querySelector(".showPost-commentContainer");
+  commentContainer.appendChild(comContent);
 }
 
-export { threePost, tenRecentPost, tenPopularPost, onePost };
+function authForm(target) {
+  let form = document.createElement("form");
+  form.className = "auth-form";
+  form.innerHTML = `<label class="username" for="auth-username"> Username :
+        </label>
+        <input type="text" id="auth-username" placeholder="Enter your username..." autocomplete="on">
+        <label class="password" for="auth-password"> Password : </label>
+        <input type="password" id="auth-password" placeholder="Enter your password...">
+        <input class="auth-btn" type="submit" value="Login">`;
+  target.appendChild(form);
+}
+
+function authUser(target, data) {
+  let user = document.createElement("div");
+  user.className = "auth-user";
+  user.innerHTML = `
+   <h2>Logged in as, ${data.username}</h2>
+   <button class="auth-logout">Logout</button>
+  `;
+  target.appendChild(user);
+}
+
+function authError(target) {
+  let error = document.createElement("div");
+  error.className = "auth-error";
+  error.innerHTML = "Login Failed, please try again";
+  target.appendChild(error);
+}
+
+function allPost(target, data) {
+  let container = document.createElement("div");
+  container.className = "allPost";
+  console.log(data);
+  data.forEach((el) => {
+    let card = document.createElement("div");
+
+    let ul = document.createElement("ul");
+    ul.className = "allPost-comContent";
+    el.p_comment.forEach((item) => {
+      let li = document.createElement("li");
+      li.innerHTML = item.c_content;
+      ul.appendChild(li);
+    });
+    card.className = "allPost-card";
+    card.innerHTML = `<a href="/#!/posts/${el.id}">
+            <img class="allPost-image" src="${
+              el.p_url
+            }" alt="img" class="allPost-card__image">
+          </a>
+          <div class="allPost-card__info">
+            <div class="allPost-card__feature">
+              <div class="allPost-card__like">
+                <button id="${
+                  el.id
+                }" class="Like" type="button"><i class="fas fa-thumbs-up"></i></button>
+                <p>${el.p_likes}</p>
+              </div>
+              <div class="allPost-card__comment">
+                <div class="allPost-comIcon"><i class="fas fa-comments"></i></div>
+                <p>${el.p_comment.length}</p>
+              </div>
+              <div class="allPost-card__author">${el.p_author.username}</div>
+              <div class="allPost-card__date">
+                ${getDate(el.published_at)}
+              </div>
+            </div>
+            <div class="allPost-card__commentContainer">
+              <h2 class="allPost-commentTitle"><i class="fas fa-comments"></i> Comments</h2>
+              ${new XMLSerializer().serializeToString(ul)}
+            </div>
+          </div>`;
+    container.appendChild(card);
+  });
+  target.appendChild(container);
+}
+
+function myPostErr(target){
+  const container = document.createElement("div");
+  container.className = "myPost-error";
+  container.innerHTML = "<h2>You have to login first</h2";
+  target.appendChild(container);
+}
+
+export {
+  threePost,
+  tenRecentPost,
+  tenPopularPost,
+  onePost,
+  authForm,
+  authUser,
+  authError,
+  allPost,
+  myPostErr,
+};

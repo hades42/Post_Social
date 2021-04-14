@@ -19,9 +19,9 @@
       "model": "user",
       "via": "comments"
     },
-    "c_post": {
-      "model": "post",
-      "via": "p_comment"
+    "post": {
+      "via": "p_comment",
+      "model": "post"
     }
   }
 }

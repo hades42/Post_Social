@@ -49,7 +49,10 @@ const Model = {
   getPosts: function () {
     // console.log(this.data.posts);
     //before that you may need to sort the posts by their timestamp
-    return this.data.posts;
+    let newData = this.data.posts.sort(
+      (a, b) => new Date(b.published_at) - new Date(a.published_at)
+    );
+    return newData;
   },
 
   // getPost - return a single post given its id
@@ -69,7 +72,10 @@ const Model = {
   addPost: function (postData) {},
 
   // getUserPosts - return just the posts for one user as an array
-  getUserPosts: function (userid) {},
+  getUserPosts: function (userid) {
+      const newData = this.getPosts().filter((el) => el.p_author.id === userid);
+      return newData;
+  },
 
   // addLike - increase the number of likes by 1
   //      by submitting a PUT request to the server API

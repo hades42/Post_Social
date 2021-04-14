@@ -401,11 +401,12 @@ footer{
   display: flex;
   list-style: none;
   font-size: 1.5rem;
-  justify-content: space-between;
   margin-bottom: 1rem;
+  width: 92rem;
+  margin: 0 auto;
 }
 .showPost-liked{
-  margin-left: 45rem;
+  margin-left: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,19 +433,23 @@ footer{
   margin-right: 1rem;
 }
 .showPost-date{
-  margin-right: 45rem;
+  margin-right: 2rem;
   color: gray;
 }
 
 .showPost-title{
-  margin-left: 45rem;
+  display: block;
+  width: 89rem;
+  margin: 0 auto;
   font-size: 2.5rem;
 }
 .showPost-commentContainer{
-  margin: 2rem 42.5rem 0 42.5rem;
+  margin: 2rem auto 0 auto;
+  width: 92rem;
   background-color: white;
   border-radius: .6rem;
   padding: 2rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
 }
 .showPost-commentTitle{
   border-bottom: 1px solid rgb(221, 221, 221);
@@ -467,7 +472,8 @@ footer{
   padding-bottom: 2rem;
 }
 .showPost-form{
-  margin: 2rem 0 0 42.5rem;
+  width: 92rem;
+  margin: 2rem auto 0 auto;
   display: flex;
   align-items: center;
 }
@@ -479,6 +485,7 @@ footer{
   font-size: 1.5rem;
   outline: none;
   margin-right: 1.5rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
 }
 .showPost-form .buttonInput{
   padding: 1.7rem 3rem; 
@@ -488,18 +495,209 @@ footer{
   font-size: 1.5rem;
   color: gray;
   cursor: pointer;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
 }
 .showPost-author{
-  margin-left: 45rem;
+  display: block;
+  width: 89rem;
+  margin: 0 auto;
   font-size: 1.7rem;
   color: gray;
 }
-.like{
+.Like{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.like p{
+.Like p{
   /* display: inline-block; */
   margin-left: 0.5rem;
+}
+
+/* authentication form */
+.auth-form {
+  font-size: 1.5rem;
+  color: gray;
+}
+.auth-form .username,
+.auth-form .password {
+  margin-right: 0.5rem;
+}
+.auth-form #auth-username,
+.auth-form #auth-password {
+  border: solid 0.5px rgb(192, 192, 192);
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
+  border-radius: 0.7rem;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
+  margin-right: 2rem;
+}
+.auth-user {
+  display: flex;
+  align-items: center;
+  margin-left: 35rem;
+  font-size: 1.5rem;
+  font-family: "Lekton", sans-serif;
+}
+.auth-user h2 {
+  margin-right: 2rem;
+}
+.auth-logout {
+  padding: 0.7rem 1.5rem;
+  border: solid 0.5px rgb(192, 192, 192);
+  background-color: white;
+  border-radius: 0.6rem;
+  font-size: 1.3rem;
+  color: gray;
+  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
+  cursor: pointer;
+}
+.auth-error {
+  position: absolute;
+  font-size: 1rem;
+  color: red;
+  left: 95rem;
+  top: 5.5rem;
+}
+
+.auth-btn{
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  background-color: white;
+  border: solid 0.5px rgb(192, 192, 192);
+  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px; 
+  font-size: 1.2rem;
+  color: gray;
+  cursor: pointer;
+}
+
+
+/* ALl post  */
+.allPost, .myPost {
+  margin: 10rem 0 0 35rem;
+}
+.allPost img, .myPost img {
+  width: 47rem;
+  height: 100%;
+  border-radius: 0.7rem;
+  margin-right: 3rem;
+  position: relative;
+}
+.allPost-card a, .myPost-card a{
+  position: relative;
+}
+.allPost-card a::before, .myPost-card a::before{
+  background: rgba(0, 0, 0, 0)
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 83%)
+    repeat scroll 0 0;
+  border-radius: 6px;
+  opacity: 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 94%;
+  z-index: 10;
+  transition: all 0.2s linear;
+}
+.allPost-card a:hover::before , .myPost-card a:hover::before{
+  opacity: 1;
+}
+.allPost-card ,.myPost-card{
+  display: flex;
+  margin-bottom: 3rem;
+}
+.allPost-card__info, .myPost-card__info {
+  width: 60rem;
+}
+.allPost-card__feature, .myPost-card__feature {
+  display: flex;
+  align-items: center;
+  color: gray;
+  margin-bottom: 1rem;
+}
+.allPost-card__like, .myPost-card__like {
+  display: flex;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+.allPost-card__like button ,.myPost-card__like button{
+  border: none;
+  font-size: 2.3rem;
+  color: #ff4b33;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.allPost-card__like p,.myPost-card__like p {
+  font-size: 1.5rem;
+  color: gray;
+}
+.allPost-card__comment,.myPost-card__comment {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+}
+.allPost-comIcon,.myPost-comIcon {
+  font-size: 2.3rem;
+  color: gray;
+  margin-right: 0.5rem;
+}
+.allPost-card__comment p ,.myPost-card__comment p{
+  font-size: 1.5rem;
+  color: gray;
+}
+.allPost-card__author,.myPost-card__author  {
+  font-size: 1.5rem;
+  margin-right: auto;
+}
+.allPost-card__date,.myPost-card__date {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+.allPost-card__commentContainer,.myPost-card__commentContainer {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.7rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
+}
+.allPost-commentTitle,.myPost-commentTitle {
+  color: gray;
+  font-weight: 200;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(218, 218, 218);
+  position: relative;
+}
+.allPost-commentTitle::after,.myPost-commentTitle::after {
+  content: "";
+  background-color: #ff4b33;
+  width: 2px;
+  height: 3rem;
+  position: absolute;
+  top: -4px;
+  left: -13px;
+}
+.allPost-comContent ,.myPost-comContent{
+  padding-top: 1rem;
+  height: 25rem;
+  list-style: none;
+  font-size: 1.5rem;
+  overflow: scroll;
+}
+.allPost-comContent li ,.myPost-comContent li{
+  margin-bottom: 1rem;
+}
+
+/* My Post */
+.myPost-error {
+  margin-top: 6rem;
+  background-color: white;
+  padding: 10rem 0;
+}
+.myPost-error h2 {
+  text-align: center;
+  font-size: 4rem;
+  font-family: "Lekton", sans-serif;
+  color: gray;
 }

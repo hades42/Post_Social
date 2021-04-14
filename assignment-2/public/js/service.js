@@ -18,8 +18,26 @@ const Auth = {
     //      username - is the input username
     //      password - is the input password
     // when the request is resolved, creates a "userLogin" event
-    login: function(username, password) {
-
+    login: function(authInfo) {
+        fetch("/auth/local", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(authInfo),
+        })
+        .then(res => res.json())
+        .then(data => {
+            this.userData = data;
+            console.log(data);
+            if(this.getUser() && this.getJWT()){
+                let event = new CustomEvent("userLogin");
+                window.dispatchEvent(event);
+            } else{
+                let event = new CustomEvent("errorAuth")
+                window.dispatchEvent(event);
+            }
+        }).catch(err => console.log(err))
     }, 
 
     //getUser - return the user object from userData
@@ -39,5 +57,14 @@ const Auth = {
             return null;
         } 
     }
-    
+    ,
+    // Delete the current data
+    deleteData: function(){
+        this.userData = null;
+        let event = new CustomEvent("userLogout");
+        window.dispatchEvent(event);
+    },
+    getData: function(){
+        return this.userData;
+    }
 }
