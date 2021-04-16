@@ -249,6 +249,23 @@ function myPostErr(target){
   target.appendChild(container);
 }
 
+function creatingPostForm(target){
+  const container = document.createElement("div");
+  container.className = "myPostForm";
+  container.innerHTML = `<h3 class="myPostForm-title">Creating Your Post!</h3>
+        <form class="form myPostForm-form">
+          <div class="form-image">
+            <label for="url_image">URL Image: </label>
+            <input type="text" id="url_image" placeholder="Enter your URL image...">
+          </div>
+          <div class="form-caption">
+            <textarea placeholder="Enter your caption here..." name="" id=""></textarea>
+          </div>
+          <input type="submit" class="form_submit" value="Create a Post">
+        </form>`;
+  target.appendChild(container);
+}
+
 export {
   threePost,
   tenRecentPost,
@@ -259,4 +276,5 @@ export {
   authError,
   allPost,
   myPostErr,
+  creatingPostForm
 };

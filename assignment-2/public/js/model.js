@@ -1,3 +1,5 @@
+import { Auth } from "./service.js";
+
 export { Model };
 /*
  *
@@ -69,12 +71,28 @@ const Model = {
   // addPost - add a new post by submitting a POST request to the server API
   // postData is an object containing all fields in the post object (e.g., p_caption)
   // when the request is resolved, creates an "postAdded" event
-  addPost: function (postData) {},
+  addPost: function (postData) {
+    fetch(this.postsUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${Auth.getJWT()}`,
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setPosts(data);
+        let event = new CustomEvent("postAdded");
+        window.dispatchEvent(event);
+      });
+  },
 
   // getUserPosts - return just the posts for one user as an array
   getUserPosts: function (userid) {
-      const newData = this.getPosts().filter((el) => el.p_author.id === userid);
-      return newData;
+    const newData = this.getPosts().filter((el) => el.p_author.id === userid);
+    return newData;
   },
 
   // addLike - increase the number of likes by 1
@@ -82,21 +100,23 @@ const Model = {
   //      postId - is the id of the post
   // when the request is resolved, creates an "likeAdded" event
   addLike: function (postId) {
-    let updatedData = this.data.posts.find(el => el.id === postId)
-     updatedData.p_likes = (++updatedData.p_likes).toString();
-    fetch(this.postsUrl+"/"+postId, {
+    let updatedData = this.data.posts.find((el) => el.id === postId);
+    updatedData.p_likes = (++updatedData.p_likes).toString();
+    fetch(this.postsUrl + "/" + postId, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedData)
-    }).then(res => {
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => {
         return res.json();
-    }).then(data => {
+      })
+      .then((data) => {
         this.setPosts(data);
         let event = new CustomEvent("likeAdded");
         window.dispatchEvent(event);
-    });
+      });
   },
 
   // addComment - add a comment to a post

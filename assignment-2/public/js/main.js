@@ -7,7 +7,7 @@
  * Student Number:
  *
  */
-import { threePost, tenRecentPost, tenPopularPost, onePost,authForm,authUser, authError, allPost, myPostErr} from "./views.js";
+import { threePost, tenRecentPost, tenPopularPost, onePost,authForm,authUser, authError, allPost, myPostErr, creatingPostForm} from "./views.js";
 import { Model } from "./model.js";
 import { splitHash } from "./util.js";
 import {Auth} from "./service.js";
@@ -15,7 +15,6 @@ window.addEventListener("modelUpdated", (e) => {
   let path = splitHash(window.location.hash);
   let target = document.querySelector(".target");
   let auth = document.querySelector(".authentication");
-  console.log(path);
   target.innerHTML = "";
   if (path.path === "posts") {
     let onep = Model.getPost(+path.id);
@@ -35,6 +34,7 @@ window.addEventListener("modelUpdated", (e) => {
       myPostErr(target);
     } else{
       let myPostRecents = Model.getUserPosts(Auth.getUser().id);
+      creatingPostForm(target);
       allPost(target, myPostRecents);
     }
   }
@@ -67,6 +67,10 @@ window.addEventListener("errorAuth", () => {
  authError(auth);
 });
 
+window.addEventListener("postAdded", () => {
+  Model.updatePosts();
+});
+
 function binding() {
   // for Like button
   let likeBtn = document.querySelectorAll(".Like");
@@ -84,7 +88,14 @@ function binding() {
    if(logout){
      logout.addEventListener("click", logoutFunc);
    }
+
+  // For submit a new Post
+  let newPostForm = document.querySelector(".myPostForm-form");
+  if(newPostForm){
+    newPostForm.addEventListener("submit", createPost);
+  }
 }
+
 function logoutFunc(e){
   Auth.deleteData();
 }
@@ -106,6 +117,28 @@ function loginForm(e){
   Auth.login(authInfo);
   e.target[0].value ="";
   e.target[1].value ="";
+}
+
+function createPost(e){
+  e.preventDefault();
+  const url_image = e.target[0].value;
+  const caption = e.target[1].value;
+  const currUser = Auth.getUser();
+  const dataPosted = {
+    p_caption: caption,
+    p_likes: "0",
+    p_url: url_image,
+    p_author: {
+      id: currUser.id,
+      username: currUser.username,
+      email: currUser.email,
+      provider: currUser.provider,
+      confirmed: currUser.confirmed,
+      blocked: currUser.blocked,
+      role: currUser.role.id,
+    },
+  };
+  Model.addPost(dataPosted);
 }
 
 function redraw() {
