@@ -30,6 +30,7 @@ const Model = {
   //this will hold the post data stored in the model
   data: {
     posts: [],
+    comments: [],
   },
 
   // updatePosts - retrieve the latest list of posts from the server API
@@ -38,9 +39,15 @@ const Model = {
     fetch(this.postsUrl)
       .then((res) => res.json())
       .then((data) => {
+        fetch(this.commentsUrl)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            this.setComments(data);
+            let event = new CustomEvent("modelUpdated");
+            window.dispatchEvent(event);
+          });
         this.setPosts(data);
-        let event = new CustomEvent("modelUpdated");
-        window.dispatchEvent(event);
       })
       .catch((err) => {
         console.log(err);
@@ -66,6 +73,10 @@ const Model = {
 
   setPosts: function (posts) {
     this.data.posts = posts;
+  },
+
+  setComments: function (comments) {
+    this.data.comments = comments;
   },
 
   // addPost - add a new post by submitting a POST request to the server API

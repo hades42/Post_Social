@@ -8,6 +8,7 @@
  *
  */
 import { getDate } from "./util.js";
+import {Model} from "./model.js";
 
 function threePost(data, target) {
   let postContainer = document.createElement("div");
@@ -157,8 +158,18 @@ function onePost(data, target) {
   let comContent = document.createElement("ul");
   comContent.className = "showPost-comContent";
   data.p_comment.forEach((el) => {
+    let comments = Model.data.comments.find(c => c.id === el.id); 
+    console.log(comments);
     let li = document.createElement("li");
-    li.innerHTML = el.c_content;
+    li.innerHTML = `
+              <div class="showPost-comContent__author">${
+                comments.c_author.username
+              }</div>
+              <div class="showPost-comContent__comment">${el.c_content}</div>
+              <div class="showPost-comContent__date">${getDate(
+                el.published_at
+              )}</div>
+            `;
     comContent.appendChild(li);
   });
 
@@ -232,6 +243,7 @@ function allPost(target, data) {
                 ${getDate(el.published_at)}
               </div>
             </div>
+            <div class="allPost-card__caption">${el.p_caption}</div>
             <div class="allPost-card__commentContainer">
               <h2 class="allPost-commentTitle"><i class="fas fa-comments"></i> Comments</h2>
               ${new XMLSerializer().serializeToString(ul)}

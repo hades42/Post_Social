@@ -471,6 +471,16 @@ footer{
   border-bottom: 1px solid rgb(207, 207, 207);
   padding-bottom: 2rem;
 }
+.showPost-comContent__author{
+  color: gray;
+  margin-bottom: .5rem;
+}
+.showPost-comContent__date{
+  color: gray;
+  display: block;
+  text-align: right;
+  margin-right: 2rem;
+}
 .showPost-form{
   width: 92rem;
   margin: 2rem auto 0 auto;
@@ -616,7 +626,7 @@ footer{
   display: flex;
   align-items: center;
   color: gray;
-  margin-bottom: 1rem;
+  margin-bottom: .7rem;
 }
 .allPost-card__like, .myPost-card__like {
   display: flex;
@@ -655,6 +665,13 @@ footer{
 .allPost-card__date,.myPost-card__date {
   font-size: 1.5rem;
   margin-right: 1rem;
+}
+.allPost-card__caption{
+  font-family: "Lekton", sans-serif;
+  font-weight: 600;
+  color: gray;
+  margin-bottom: .5rem;
+  font-size: 2rem;
 }
 .allPost-card__commentContainer,.myPost-card__commentContainer {
   background-color: white;
