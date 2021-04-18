@@ -9,6 +9,7 @@
  */
 import { getDate } from "./util.js";
 import {Model} from "./model.js";
+import {Auth} from "./service.js"
 
 function threePost(data, target) {
   let postContainer = document.createElement("div");
@@ -148,18 +149,23 @@ function onePost(data, target) {
         <div class="showPost-commentContainer">
           <h2 class="showPost-commentTitle"><i class="fas fa-comments"></i> Comments</h2>
         </div>
-        <form class="showPost-form">
-          <input class="textInput" type="text" placeholder="Comment">
-          <input class="buttonInput" type="submit" value="Submit">
-        </form>`;
+       `;
   container.innerHTML = content;
   target.appendChild(container);
+
+  if(Auth.getUser()){
+    let form = document.createElement("form");
+    form.className = "showPost-form";
+    form.id = `${data.id}`;
+    form.innerHTML = `<input class="textInput" type="text" placeholder="Comment">
+          <input class="buttonInput" type="submit" value="Submit">`;
+    container.appendChild(form);
+  }
 
   let comContent = document.createElement("ul");
   comContent.className = "showPost-comContent";
   data.p_comment.forEach((el) => {
     let comments = Model.data.comments.find(c => c.id === el.id); 
-    console.log(comments);
     let li = document.createElement("li");
     li.innerHTML = `
               <div class="showPost-comContent__author">${

@@ -42,7 +42,7 @@ const Model = {
         fetch(this.commentsUrl)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             this.setComments(data);
             let event = new CustomEvent("modelUpdated");
             window.dispatchEvent(event);
@@ -134,7 +134,23 @@ const Model = {
   //      by submitting a POST request to the server API
   //      commentData is an object containing the content of the comment, the author and the postid
   // when the request is resolved, creates an "commentAdded" event
-  addComment: function (commentData) {},
+  addComment: function (commentData) {
+    fetch(this.commentsUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${Auth.getJWT()}`,
+      },
+      body: JSON.stringify(commentData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setComments(data);
+        let event = new CustomEvent("commentAdded");
+        window.dispatchEvent(event);
+      });
+  },
 
   //getRandomPosts - return N random posts as an array
   getRandomPosts: function (N) {

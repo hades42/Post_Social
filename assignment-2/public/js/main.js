@@ -71,6 +71,9 @@ window.addEventListener("postAdded", () => {
   Model.updatePosts();
 });
 
+window.addEventListener("commentAdded", () => {
+  Model.updatePosts();
+});
 function binding() {
   // for Like button
   let likeBtn = document.querySelectorAll(".Like");
@@ -93,6 +96,12 @@ function binding() {
   let newPostForm = document.querySelector(".myPostForm-form");
   if(newPostForm){
     newPostForm.addEventListener("submit", createPost);
+  }
+
+  // For submit a new Comment
+  let newCommentForm = document.querySelector(".showPost-form");
+  if(newCommentForm){
+    newCommentForm.addEventListener("submit", createComment);
   }
 }
 
@@ -130,15 +139,25 @@ function createPost(e){
     p_url: url_image,
     p_author: {
       id: currUser.id,
-      username: currUser.username,
-      email: currUser.email,
-      provider: currUser.provider,
-      confirmed: currUser.confirmed,
-      blocked: currUser.blocked,
-      role: currUser.role.id,
     },
   };
   Model.addPost(dataPosted);
+}
+
+function createComment(e){
+  e.preventDefault();
+  const comment = e.target[0].value;
+  const currUser = Auth.getUser();
+  const dataPosted = {
+    c_content: comment,
+    c_author: {
+      id: currUser.id,
+    },
+    post: {
+      id: e.target.id,
+    },
+  };
+  Model.addComment(dataPosted);
 }
 
 function redraw() {
