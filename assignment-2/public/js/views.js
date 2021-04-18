@@ -152,13 +152,13 @@ function onePost(data, target) {
        `;
   container.innerHTML = content;
   target.appendChild(container);
-
-  if(Auth.getUser()){
+   const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
+  if(AuthData){
     let form = document.createElement("form");
     form.className = "showPost-form";
     form.id = `${data.id}`;
     form.innerHTML = `<input class="textInput" type="text" placeholder="Comment">
-          <input class="buttonInput" type="submit" value="Submit">`;
+          <input class="buttonInput" type="submit" value="Add a coment">`;
     container.appendChild(form);
   }
 
@@ -186,6 +186,7 @@ function onePost(data, target) {
 function authForm(target) {
   let form = document.createElement("form");
   form.className = "auth-form";
+  form.id = "loginform";
   form.innerHTML = `<label class="username" for="auth-username"> Username :
         </label>
         <input type="text" id="auth-username" placeholder="Enter your username..." autocomplete="on">
@@ -199,7 +200,7 @@ function authUser(target, data) {
   let user = document.createElement("div");
   user.className = "auth-user";
   user.innerHTML = `
-   <h2>Logged in as, ${data.username}</h2>
+   <h2>Logged in as ${data.username}</h2>
    <button class="auth-logout">Logout</button>
   `;
   target.appendChild(user);
@@ -215,7 +216,6 @@ function authError(target) {
 function allPost(target, data) {
   let container = document.createElement("div");
   container.className = "allPost";
-  console.log(data);
   data.forEach((el) => {
     let card = document.createElement("div");
 

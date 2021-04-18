@@ -15,6 +15,9 @@ window.addEventListener("modelUpdated", (e) => {
   let path = splitHash(window.location.hash);
   let target = document.querySelector(".target");
   let auth = document.querySelector(".authentication");
+
+  const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
+
   target.innerHTML = "";
   if (path.path === "posts") {
     let onep = Model.getPost(+path.id);
@@ -30,17 +33,17 @@ window.addEventListener("modelUpdated", (e) => {
     let recents = Model.getPosts();
     allPost(target, recents);
   } else if(path.path === "my-posts"){
-    if(!Auth.getUser()){
+    if(!AuthData){
       myPostErr(target);
     } else{
-      let myPostRecents = Model.getUserPosts(Auth.getUser().id);
+      let myPostRecents = Model.getUserPosts(AuthData.user.id);
       creatingPostForm(target);
       allPostAuth(target, myPostRecents);
     }
   }
   auth.innerHTML ="";
-  if(Auth.getUser()){
-    authUser(auth, Auth.getUser());
+  if(AuthData){
+    authUser(auth, AuthData.user);
   } else{
     authForm(auth);
   }
@@ -145,13 +148,13 @@ function createPost(e){
   const url_image = e.target[0].value;
   const file_image = e.target[1].files[0];
   const caption = e.target[2].value;
-  const currUser = Auth.getUser();
+  const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
   const dataPosted = {
     p_caption: caption,
     p_likes: "0",
     p_url: url_image,
     p_author: {
-      id: currUser.id,
+      id: AuthData.user.id,
     },
   };
   const imageData = new FormData();
@@ -162,11 +165,11 @@ function createPost(e){
 function createComment(e){
   e.preventDefault();
   const comment = e.target[0].value;
-  const currUser = Auth.getUser();
+  const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
   const dataPosted = {
     c_content: comment,
     c_author: {
-      id: currUser.id,
+      id: AuthData.user.id,
     },
     post: {
       id: e.target.id,

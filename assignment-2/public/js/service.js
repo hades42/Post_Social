@@ -31,6 +31,7 @@ const Auth = {
             this.userData = data;
             console.log(data);
             if(this.getUser() && this.getJWT()){
+                sessionStorage.setItem("UserInfo", JSON.stringify(data));
                 let event = new CustomEvent("userLogin");
                 window.dispatchEvent(event);
             } else{
@@ -60,6 +61,7 @@ const Auth = {
     ,
     // Delete the current data
     deleteData: function(){
+        sessionStorage.clear();
         this.userData = null;
         let event = new CustomEvent("userLogout");
         window.dispatchEvent(event);

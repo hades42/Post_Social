@@ -33,6 +33,10 @@ const Model = {
     comments: [],
   },
 
+  getAuth(){
+     const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
+     return AuthData;
+  },
   // updatePosts - retrieve the latest list of posts from the server API
   // when the request is resolved, creates a "modelUpdated" event
   updatePosts: function () {
@@ -86,7 +90,7 @@ const Model = {
     fetch(this.uploadUrl, {
       method: "POST",
       headers: {
-        Authorization: `bearer ${Auth.getJWT()}`,
+        Authorization: `bearer ${this.getAuth().jwt}`,
       },
       body: imageData,
     })
@@ -97,7 +101,7 @@ const Model = {
         fetch(this.postsUrl, {
           method: "POST",
           headers: {
-            Authorization: `bearer ${Auth.getJWT()}`,
+            Authorization: `bearer ${this.getAuth().jwt}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(postData),
@@ -146,17 +150,17 @@ const Model = {
   //      commentData is an object containing the content of the comment, the author and the postid
   // when the request is resolved, creates an "commentAdded" event
   addComment: function (commentData) {
+    //  const AuthData = JSON.parse(sessionStorage.getItem(UserInfo));
     fetch(this.commentsUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${Auth.getJWT()}`,
+        Authorization: `bearer ${this.getAuth().jwt}`,
       },
       body: JSON.stringify(commentData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         this.setComments(data);
         let event = new CustomEvent("commentAdded");
         window.dispatchEvent(event);
@@ -171,7 +175,7 @@ const Model = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${Auth.getJWT()}`,
+        Authorization: `bearer ${this.getAuth().jwt}`,
       },
     })
       .then((res) => res.json())
