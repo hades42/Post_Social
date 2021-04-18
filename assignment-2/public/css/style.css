@@ -394,7 +394,7 @@ footer{
   display: block;
   margin: 0 auto 1.3rem auto;
   width: 90rem;
-  height: 50rem;
+  height: 100%;
   border-radius: .7rem;
 }
 .showPost-feature{
@@ -589,7 +589,7 @@ footer{
 }
 .allPost img, .myPost img {
   width: 47rem;
-  height: 100%;
+  height: 38rem;
   border-radius: 0.7rem;
   margin-right: 3rem;
   position: relative;
@@ -627,6 +627,15 @@ footer{
   align-items: center;
   color: gray;
   margin-bottom: .7rem;
+}
+.allPost-card_delete{
+  padding: 1rem 1.2rem;  
+  font-size: 1.4rem;
+  color: white;
+  background-color: #ff4b33;
+  border-radius: .6rem;
+  border: none;
+  cursor: pointer;
 }
 .allPost-card__like, .myPost-card__like {
   display: flex;

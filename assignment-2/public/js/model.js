@@ -163,6 +163,23 @@ const Model = {
       });
   },
 
+  // deletePost - delete a Post
+  //      by submitting a DELETE request to the server API
+  // when the request is resolved, creates an "deletePost" even
+  deletePost: function (id) {
+    fetch(this.postsUrl + "/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${Auth.getJWT()}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        let event = new CustomEvent("deletePost");
+        window.dispatchEvent(event);
+      });
+  },
   //getRandomPosts - return N random posts as an array
   getRandomPosts: function (N) {
     const shuffled = this.getPosts().sort(() => 0.5 - Math.random());

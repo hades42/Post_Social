@@ -7,7 +7,7 @@
  * Student Number:
  *
  */
-import { threePost, tenRecentPost, tenPopularPost, onePost,authForm,authUser, authError, allPost, myPostErr, creatingPostForm} from "./views.js";
+import { threePost, tenRecentPost, tenPopularPost, onePost,authForm,authUser, authError, allPost, myPostErr, creatingPostForm, allPostAuth} from "./views.js";
 import { Model } from "./model.js";
 import { splitHash } from "./util.js";
 import {Auth} from "./service.js";
@@ -35,7 +35,7 @@ window.addEventListener("modelUpdated", (e) => {
     } else{
       let myPostRecents = Model.getUserPosts(Auth.getUser().id);
       creatingPostForm(target);
-      allPost(target, myPostRecents);
+      allPostAuth(target, myPostRecents);
     }
   }
   auth.innerHTML ="";
@@ -74,6 +74,12 @@ window.addEventListener("postAdded", () => {
 window.addEventListener("commentAdded", () => {
   Model.updatePosts();
 });
+
+window.addEventListener("deletePost", () => {
+  Model.updatePosts();
+});
+
+
 function binding() {
   // for Like button
   let likeBtn = document.querySelectorAll(".Like");
@@ -102,6 +108,12 @@ function binding() {
   let newCommentForm = document.querySelector(".showPost-form");
   if(newCommentForm){
     newCommentForm.addEventListener("submit", createComment);
+  }
+
+  // Delete Post
+  let deleteBtn = document.querySelectorAll(".allPost-card_delete");
+  if(deleteBtn){
+    deleteBtn.forEach(el => el.addEventListener("click", deletePost));
   }
 }
 
@@ -161,6 +173,10 @@ function createComment(e){
     },
   };
   Model.addComment(dataPosted);
+}
+
+function deletePost(e){
+  Model.deletePost(e.target.id);
 }
 
 function redraw() {

@@ -259,6 +259,53 @@ function allPost(target, data) {
   });
   target.appendChild(container);
 }
+function allPostAuth(target, data) {
+  let container = document.createElement("div");
+  container.className = "allPost";
+  data.forEach((el) => {
+    let card = document.createElement("div");
+
+    let ul = document.createElement("ul");
+    ul.className = "allPost-comContent";
+    el.p_comment.forEach((item) => {
+      let li = document.createElement("li");
+      li.innerHTML = item.c_content;
+      ul.appendChild(li);
+    });
+    card.className = "allPost-card";
+    card.innerHTML = `<a href="/#!/posts/${el.id}">
+            <img class="allPost-image" src="${
+              el.p_url || el.p_image.url
+            }" alt="img" class="allPost-card__image">
+          </a>
+          <div class="allPost-card__info">
+            <div class="allPost-card__feature">
+              <div class="allPost-card__like">
+                <button id="${
+                  el.id
+                }" class="Like" type="button"><i class="fas fa-thumbs-up"></i></button>
+                <p>${el.p_likes}</p>
+              </div>
+              <div class="allPost-card__comment">
+                <div class="allPost-comIcon"><i class="fas fa-comments"></i></div>
+                <p>${el.p_comment.length}</p>
+              </div>
+              <div class="allPost-card__author">${el.p_author.username}</div>
+              <div class="allPost-card__date">
+              ${getDate(el.published_at)}
+              </div>
+              <button id="${el.id}" class="allPost-card_delete">Delete</button>
+            </div>
+            <div class="allPost-card__caption">${el.p_caption}</div>
+            <div class="allPost-card__commentContainer">
+              <h2 class="allPost-commentTitle"><i class="fas fa-comments"></i> Comments</h2>
+              ${new XMLSerializer().serializeToString(ul)}
+            </div>
+          </div>`;
+    container.appendChild(card);
+  });
+  target.appendChild(container);
+}
 
 function myPostErr(target){
   const container = document.createElement("div");
@@ -299,5 +346,6 @@ export {
   authError,
   allPost,
   myPostErr,
-  creatingPostForm
+  creatingPostForm,
+  allPostAuth
 };
