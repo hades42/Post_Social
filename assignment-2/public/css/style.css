@@ -749,7 +749,11 @@ footer{
   margin-bottom: 1rem;
 }
 .form-image {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+.form-image label{
+  display: block;
+  margin-bottom: .5rem;
 }
 .form-image input {
   width:100%;
@@ -767,4 +771,23 @@ footer{
   font-size: 1.2rem;
   color: gray;
   cursor: pointer;
+}
+.myPostForm .form-file {
+  margin-bottom: 1.5rem;
+}
+.myPostForm .form-file label{
+  margin-bottom: .5rem;
+  display: block;
+}
+.myPostForm .form-file input::file-selector-button {
+  color: white;
+  display: inline-block;
+  background: #ff4b33;
+  border: none;
+  padding: 7px 15px;
+  font-weight: 700;
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
 }

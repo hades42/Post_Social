@@ -21,7 +21,7 @@ function threePost(data, target) {
     anchor.id = `${el.id}`;
     anchor.href = `/#!/posts/${el.id}`;
     let post = `
-        <img class="flowtow-image" src="${el.p_url}" alt="">
+        <img class="flowtow-image" src="${el.p_url || el.p_image.url}" alt="">
         <div class="flowtow-info">
         <h2 class="flowtow-caption">${el.p_caption}</h2>
         <div class="flowtow-author">${el.p_author.username}</div>
@@ -58,7 +58,7 @@ function tenRecentPost(data, target) {
     post.innerHTML = `<a href="/#!/posts/${
       element.id
     }" class="recentPost-image">
-              <img src="${element.p_url}" alt="">
+              <img src="${element.p_url || element.p_image.url}" alt="">
             </a>
             <div class="recentPost-info">
               <h2 class="recentPost-caption">${element.p_caption}</h2>
@@ -99,7 +99,7 @@ function tenPopularPost(data, target) {
     post.innerHTML = `<a href="/#!/posts/${
       element.id
     }" class="popularPost-image">
-              <img src="${element.p_url}" alt="">
+              <img src="${element.p_url || element.p_image.url}" alt="">
             </a>
             <div class="popularPost-info">
               <h2 class="popularPost-caption">${element.p_caption}</h2>
@@ -127,7 +127,7 @@ function onePost(data, target) {
   container.className = "showPost";
 
   let content = `<div class="showPost-image">
-          <img src="${data.p_url}" alt="image">
+          <img src="${data.p_url || data.p_image.url}" alt="image">
         </div>
         <ul class="showPost-feature">
           <li class="showPost-liked">
@@ -229,7 +229,7 @@ function allPost(target, data) {
     card.className = "allPost-card";
     card.innerHTML = `<a href="/#!/posts/${el.id}">
             <img class="allPost-image" src="${
-              el.p_url
+              el.p_url || el.p_image.url
             }" alt="img" class="allPost-card__image">
           </a>
           <div class="allPost-card__info">
@@ -275,6 +275,11 @@ function creatingPostForm(target){
           <div class="form-image">
             <label for="url_image">URL Image: </label>
             <input type="text" id="url_image" placeholder="Enter your URL image...">
+          </div>
+          <div class="form-file">
+            <label for="file_image">Choose your own image (If you do not have the URL): 
+            </label>
+            <input id="file_image" name="picture" type=file accept=image/*>
           </div>
           <div class="form-caption">
             <textarea placeholder="Enter your caption here..." name="" id=""></textarea>

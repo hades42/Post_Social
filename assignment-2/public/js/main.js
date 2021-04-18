@@ -131,7 +131,8 @@ function loginForm(e){
 function createPost(e){
   e.preventDefault();
   const url_image = e.target[0].value;
-  const caption = e.target[1].value;
+  const file_image = e.target[1].files[0];
+  const caption = e.target[2].value;
   const currUser = Auth.getUser();
   const dataPosted = {
     p_caption: caption,
@@ -141,7 +142,9 @@ function createPost(e){
       id: currUser.id,
     },
   };
-  Model.addPost(dataPosted);
+  const imageData = new FormData();
+  imageData.append("files", file_image);
+  Model.addPost(imageData,dataPosted);
 }
 
 function createComment(e){

@@ -24,7 +24,7 @@ export { Model };
 
 const Model = {
   postsUrl: "/posts",
-  uploadUrl: "/upload",
+  uploadUrl: "/upload/",
   commentsUrl: "/comments",
 
   //this will hold the post data stored in the model
@@ -82,21 +82,32 @@ const Model = {
   // addPost - add a new post by submitting a POST request to the server API
   // postData is an object containing all fields in the post object (e.g., p_caption)
   // when the request is resolved, creates an "postAdded" event
-  addPost: function (postData) {
-    fetch(this.postsUrl, {
+  addPost: function (imageData, postData) {
+    fetch(this.uploadUrl, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `bearer ${Auth.getJWT()}`,
       },
-      body: JSON.stringify(postData),
+      body: imageData,
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        this.setPosts(data);
-        let event = new CustomEvent("postAdded");
-        window.dispatchEvent(event);
+        // console.log(data);
+        postData = { ...postData, p_image: data[0] };
+        fetch(this.postsUrl, {
+          method: "POST",
+          headers: {
+            Authorization: `bearer ${Auth.getJWT()}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            this.setPosts(data);
+            let event = new CustomEvent("postAdded");
+            window.dispatchEvent(event);
+          });
       });
   },
 
