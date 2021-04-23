@@ -3,8 +3,8 @@
  * Module: <name>
  * < short description here e.g. "This module implements main entry point...">
  *
- * Student Name:
- * Student Number:
+ * Student Name: Van Nguyen Nguyen
+ * Student Number: 45515409
  *
  */
 import { threePost, tenRecentPost, tenPopularPost, onePost,authForm,authUser, authError, allPost, myPostErr, creatingPostForm, allPostAuth} from "./views.js";

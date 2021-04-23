@@ -3,8 +3,8 @@
  * Module: <name>
  * < short description here e.g. "This module implements view functions...">
  *
- * Student Name:
- * Student Number:
+ * Student Name: Van Nguyen Nguyen
+ * Student Number: 45515409
  *
  */
 import { getDate } from "./util.js";
