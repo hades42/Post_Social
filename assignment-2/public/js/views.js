@@ -179,7 +179,7 @@ function onePost(data, target) {
    const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
   if(AuthData){
     let form = document.createElement("form");
-    form.className = "showPost-form";
+    form.className = "showPost-form commentform";
     form.id = `${data.id}`;
     form.innerHTML = `<input class="textInput" type="text" placeholder="Comment">
           <input class="buttonInput" type="submit" value="Add a coment">`;

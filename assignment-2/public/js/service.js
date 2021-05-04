@@ -28,7 +28,6 @@ const Auth = {
         .then(res => res.json())
         .then(data => {
             this.userData = data;
-            console.log(data);
             if(this.getUser() && this.getJWT()){
                 sessionStorage.setItem("UserInfo", JSON.stringify(data));
                 let event = new CustomEvent("userLogin");

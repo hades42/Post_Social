@@ -182,8 +182,12 @@ const Model = {
   },
   //getRandomPosts - return N random posts as an array
   getRandomPosts: function (N) {
-    const shuffled = this.getPosts().sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, N);
+    let array = this.getPosts();
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array.slice(0,N);
   },
 
   // getRecentPosts - return the N most recent as an array

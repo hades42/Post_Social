@@ -14,20 +14,26 @@ body {
   /* overflow: hidden; */
 }
 header {
+  margin: 1.5rem auto 0 auto;
+  width: 130rem;
+   display: flex;
+  align-items: center; 
+  justify-content: space-between
+}
+.header-wrapper{
   position: fixed;
   font-size: 1.9rem;
-  width: 120%;
+  width: 102%;
   height: 7.5rem;
   top: 0rem;
   left: -2rem;
   box-shadow: 1px 5px 8px -6px #54545493;
-  display: flex;
-  align-items: center;
   z-index: 1000;
   background-color: #fdfdfd;
 }
+
 .navigation {
-  padding-left: 30rem;
+  /* padding-left: 30rem; */
 }
 .navigation ul {
   display: flex;
@@ -139,7 +145,8 @@ header {
 }
 
 .rePost {
-  margin: 10rem 20rem 0 20rem;
+  margin: 10rem auto 0 auto;
+  width: 140rem;
   background-color: white;
   padding: 3rem 3rem;
   border-radius: 8px;
@@ -154,7 +161,6 @@ header {
 .rePost-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: repeat(3, 1fr); */
   column-gap: 4rem;
   row-gap: 2rem;
 }
@@ -205,7 +211,7 @@ header {
 }
 .recentPost-caption {
   font-family: "Lekton", sans-serif;
-  margin: 0.9rem 0 0.3rem ;
+  margin: 0.9rem 0 0.3rem;
 }
 
 .recentPost-liked {
@@ -239,7 +245,8 @@ header {
 
 /* Popular Post */
 .poPost {
-  margin: 10rem 20rem 0 20rem;
+  margin: 10rem auto 0 auto;
+  width: 140rem;
   background-color: white;
   padding: 3rem 3rem;
   border-radius: 8px;
@@ -263,8 +270,8 @@ header {
   position: relative;
   width: 30rem;
   height: 30rem;
-   cursor: pointer;
-  display: block; 
+  cursor: pointer;
+  display: block;
 
   /* transition: all .2s linear; */
 }
@@ -305,7 +312,7 @@ header {
 }
 .popularPost-caption {
   font-family: "Lekton", sans-serif;
-  margin: 0.9rem 0 0.3rem ;
+  margin: 0.9rem 0 0.3rem;
 }
 
 .popularPost-liked {
@@ -339,7 +346,8 @@ header {
 
 /* About */
 .about {
-    margin-top: 5rem;
+  margin-top: 5rem;
+  width: 105%;
   padding: 12.8rem 0;
   background-color: transparent;
   background-image: linear-gradient(180deg, #ff4b33 0%, #f2295b 100%);
@@ -348,56 +356,56 @@ header {
   color: whitesmoke;
 }
 
-footer{
-    background-color: #2b2b2d;
+footer {
+  width: 105%;
+  background-color: #2b2b2d;
 }
-.footer-wrap{
-    display: flex;
-    justify-content: space-between;
-    font-size: 2rem;
-    padding: 2rem;
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  padding: 2rem;
 }
-.social ul{
-    list-style: none;
-    display: flex;
-    margin-left: 35rem;
+.social ul {
+  list-style: none;
+  display: flex;
+  margin-left: 35rem;
 }
-.social ul li a{
-    color: white;
-    text-decoration: none;
-    margin-right: 5rem;
+.social ul li a {
+  color: white;
+  text-decoration: none;
+  margin-right: 5rem;
 }
-.footer-tos{
-    list-style: none;
-    display: flex;
-    margin-right: 35rem;
+.footer-tos {
+  list-style: none;
+  display: flex;
+  margin-right: 35rem;
 }
-.footer-tos li a{
-    color: white;
-    text-decoration: none;
-    margin-left: 5rem;
-}
-
-#copyright{
-    color: white;
-    text-align: center;
-    font-size: 1.5rem;
+.footer-tos li a {
+  color: white;
+  text-decoration: none;
+  margin-left: 5rem;
 }
 
+#copyright {
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+}
 
 /* style for single Post */
-.showPost{
+.showPost {
   width: 100%;
-  margin: 8rem auto 0 auto;  
+  margin: 8rem auto 0 auto;
 }
-.showPost-image img{
+.showPost-image img {
   display: block;
   margin: 0 auto 1.3rem auto;
   width: 90rem;
   height: 100%;
-  border-radius: .7rem;
+  border-radius: 0.7rem;
 }
-.showPost-feature{
+.showPost-feature {
   display: flex;
   list-style: none;
   font-size: 1.5rem;
@@ -405,60 +413,60 @@ footer{
   width: 92rem;
   margin: 0 auto;
 }
-.showPost-liked{
+.showPost-liked {
   margin-left: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.showPost-liked button{
+.showPost-liked button {
   border: none;
   margin-right: 1rem;
   font-size: 2rem;
   color: #ff4b33;
   cursor: pointer;
 }
-.showPost-liked p{
+.showPost-liked p {
   color: gray;
 }
-.showPost-comment{
+.showPost-comment {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 0 4rem;
   color: gray;
 }
-.showPost-comIcon{
+.showPost-comIcon {
   font-size: 2rem;
   margin-right: 1rem;
 }
-.showPost-date{
+.showPost-date {
   margin-right: 2rem;
   color: gray;
 }
 
-.showPost-title{
+.showPost-title {
   display: block;
   width: 89rem;
   margin: 0 auto;
   font-size: 2.5rem;
 }
-.showPost-commentContainer{
+.showPost-commentContainer {
   margin: 2rem auto 0 auto;
   width: 92rem;
   background-color: white;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   padding: 2rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.showPost-commentTitle{
+.showPost-commentTitle {
   border-bottom: 1px solid rgb(221, 221, 221);
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   font-weight: 400;
   color: gray;
 }
 
-.showPost-comContent{
+.showPost-comContent {
   margin-top: 1.5rem;
   list-style: none;
   padding-left: 2rem;
@@ -466,60 +474,60 @@ footer{
   height: 40rem;
   overflow: scroll;
 }
-.showPost-comContent li{
+.showPost-comContent li {
   margin-bottom: 1rem;
   border-bottom: 1px solid rgb(207, 207, 207);
   padding-bottom: 2rem;
 }
-.showPost-comContent__author{
+.showPost-comContent__author {
   color: gray;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
-.showPost-comContent__date{
+.showPost-comContent__date {
   color: gray;
   display: block;
   text-align: right;
   margin-right: 2rem;
 }
-.showPost-form{
+.showPost-form {
   width: 93rem;
   margin: 2rem auto 0 auto;
   display: flex;
   align-items: center;
 }
-.showPost-form .textInput{
+.showPost-form .textInput {
   width: 80rem;
   padding: 1.5rem 2rem;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   border: none;
   font-size: 1.5rem;
   outline: none;
   margin-right: 1.5rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.showPost-form .buttonInput{
-  padding: 1.7rem 3rem; 
-  border:none;
+.showPost-form .buttonInput {
+  padding: 1.7rem 3rem;
+  border: none;
   background-color: white;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   font-size: 1.5rem;
   color: gray;
   cursor: pointer;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.showPost-author{
+.showPost-author {
   display: block;
   width: 89rem;
   margin: 0 auto;
   font-size: 1.7rem;
   color: gray;
 }
-.Like{
+.Like {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.Like p{
+.Like p {
   /* display: inline-block; */
   margin-left: 0.5rem;
 }
@@ -571,33 +579,36 @@ footer{
   top: 5.5rem;
 }
 
-.auth-btn{
+.auth-btn {
   padding: 1rem 1.5rem;
   border-radius: 6px;
   background-color: white;
   border: solid 0.5px rgb(192, 192, 192);
-  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px; 
+  box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
   font-size: 1.2rem;
   color: gray;
   cursor: pointer;
 }
 
-
 /* ALl post  */
-.allPost, .myPost {
+.allPost,
+.myPost {
   margin: 10rem 0 0 35rem;
 }
-.allPost img, .myPost img {
+.allPost img,
+.myPost img {
   width: 47rem;
   height: 38rem;
   border-radius: 0.7rem;
   margin-right: 3rem;
   position: relative;
 }
-.allPost-card a, .myPost-card a{
+.allPost-card a,
+.myPost-card a {
   position: relative;
 }
-.allPost-card a::before, .myPost-card a::before{
+.allPost-card a::before,
+.myPost-card a::before {
   background: rgba(0, 0, 0, 0)
     linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 83%)
     repeat scroll 0 0;
@@ -612,90 +623,105 @@ footer{
   z-index: 10;
   transition: all 0.2s linear;
 }
-.allPost-card a:hover::before , .myPost-card a:hover::before{
+.allPost-card a:hover::before,
+.myPost-card a:hover::before {
   opacity: 1;
 }
-.allPost-card ,.myPost-card{
+.allPost-card,
+.myPost-card {
   display: flex;
   margin-bottom: 3rem;
 }
-.allPost-card__info, .myPost-card__info {
+.allPost-card__info,
+.myPost-card__info {
   width: 60rem;
 }
-.allPost-card__feature, .myPost-card__feature {
+.allPost-card__feature,
+.myPost-card__feature {
   display: flex;
   align-items: center;
   color: gray;
-  margin-bottom: .7rem;
+  margin-bottom: 0.7rem;
 }
-.allPost-card_delete{
-  padding: 1rem 1.2rem;  
+.allPost-card_delete {
+  padding: 1rem 1.2rem;
   font-size: 1.4rem;
   color: white;
   background-color: #ff4b33;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   border: none;
   cursor: pointer;
 }
-.allPost-card__like, .myPost-card__like {
+.allPost-card__like,
+.myPost-card__like {
   display: flex;
   align-items: center;
   margin-right: 1.5rem;
 }
-.allPost-card__like button ,.myPost-card__like button{
+.allPost-card__like button,
+.myPost-card__like button {
   border: none;
   font-size: 2.3rem;
   color: #ff4b33;
   margin-right: 0.5rem;
   cursor: pointer;
 }
-.allPost-card__like p,.myPost-card__like p {
+.allPost-card__like p,
+.myPost-card__like p {
   font-size: 1.5rem;
   color: gray;
 }
-.allPost-card__comment,.myPost-card__comment {
+.allPost-card__comment,
+.myPost-card__comment {
   display: flex;
   align-items: center;
   margin-right: 2rem;
 }
-.allPost-comIcon,.myPost-comIcon {
+.allPost-comIcon,
+.myPost-comIcon {
   font-size: 2.3rem;
   color: gray;
   margin-right: 0.5rem;
 }
-.allPost-card__comment p ,.myPost-card__comment p{
+.allPost-card__comment p,
+.myPost-card__comment p {
   font-size: 1.5rem;
   color: gray;
 }
-.allPost-card__author,.myPost-card__author  {
+.allPost-card__author,
+.myPost-card__author {
   font-size: 1.5rem;
   margin-right: auto;
 }
-.allPost-card__date,.myPost-card__date {
+.allPost-card__date,
+.myPost-card__date {
   font-size: 1.5rem;
   margin-right: 1rem;
 }
-.allPost-card__caption{
+.allPost-card__caption {
   font-family: "Lekton", sans-serif;
   font-weight: 600;
   color: gray;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-size: 2rem;
 }
-.allPost-card__commentContainer,.myPost-card__commentContainer {
+.allPost-card__commentContainer,
+.myPost-card__commentContainer {
   background-color: white;
   padding: 1.5rem;
   border-radius: 0.7rem;
   box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
 }
-.allPost-commentTitle,.myPost-commentTitle {
+.allPost-commentTitle,
+.myPost-commentTitle {
   color: gray;
   font-weight: 200;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgb(218, 218, 218);
   position: relative;
 }
-.allPost-commentTitle::after,.myPost-commentTitle::after {
+.allPost-commentTitle::after,
+.myPost-commentTitle::after {
   content: "";
   background-color: #ff4b33;
   width: 2px;
@@ -704,14 +730,16 @@ footer{
   top: -4px;
   left: -13px;
 }
-.allPost-comContent ,.myPost-comContent{
+.allPost-comContent,
+.myPost-comContent {
   padding-top: 1rem;
   height: 25rem;
   list-style: none;
   font-size: 1.5rem;
   overflow: scroll;
 }
-.allPost-comContent li ,.myPost-comContent li{
+.allPost-comContent li,
+.myPost-comContent li {
   margin-bottom: 1rem;
 }
 
@@ -739,7 +767,7 @@ footer{
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
 }
-.myPostForm-title{
+.myPostForm-title {
   font-family: "Lekton", sans-serif;
   color: #ff4b33;
   text-align: center;
@@ -760,12 +788,12 @@ footer{
 .form-image {
   margin-bottom: 1rem;
 }
-.form-image label{
+.form-image label {
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 .form-image input {
-  width:100%;
+  width: 100%;
   padding: 1rem 1rem;
   border-radius: 0.6rem;
   box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
@@ -776,7 +804,7 @@ footer{
   border: solid 0.5px rgb(192, 192, 192);
   box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
   background-color: white;
-  border-radius: .7rem;
+  border-radius: 0.7rem;
   font-size: 1.2rem;
   color: gray;
   cursor: pointer;
@@ -784,8 +812,8 @@ footer{
 .myPostForm .form-file {
   margin-bottom: 1.5rem;
 }
-.myPostForm .form-file label{
-  margin-bottom: .5rem;
+.myPostForm .form-file label {
+  margin-bottom: 0.5rem;
   display: block;
 }
 .myPostForm .form-file input::file-selector-button {
