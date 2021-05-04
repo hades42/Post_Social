@@ -1,7 +1,6 @@
 /*
  *
- * Module: <name>
- * < short description here e.g. "This module implements view functions...">
+ * Module: View module is responsible for creating all components for the data we want to show on the website
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409
@@ -10,10 +9,13 @@
 import { getDate } from "./util.js";
 import {Model} from "./model.js";
 
+//threePost- Template view for three random posts
 function threePost(data, target) {
+  // Wrapper for the component
   let postContainer = document.createElement("div");
   postContainer.className = "threePost";
 
+  // Body of the component
   data.forEach((el, i) => {
     let anchor = document.createElement("a");
     anchor.className = `flowtow flowtow-${i + 1}`;
@@ -34,20 +36,26 @@ function threePost(data, target) {
         </div>
         `;
     anchor.innerHTML = post;
+
+    // Adding the component to the target
     postContainer.appendChild(anchor);
   });
   target.appendChild(postContainer);
 }
 
+// tenRecentPost - Template view for the most ten recent posts
 function tenRecentPost(data, target) {
+  // Wrapper for the component
   let container = document.createElement("div");
   container.className = "rePost";
 
+  // Title of the component
   let title = document.createElement("h2");
   title.className = "rePost-title";
   title.innerHTML = "Recent Posts";
   container.appendChild(title);
 
+  // Body of the component
   let postContainer = document.createElement("div");
   postContainer.className = "rePost-container";
   data.forEach((element, index) => {
@@ -77,18 +85,24 @@ function tenRecentPost(data, target) {
     postContainer.appendChild(post);
   });
   container.appendChild(postContainer);
+
+  // Adding the component to the target
   target.appendChild(container);
 }
 
+// tenPopularPost - Template for the most ten popular post
 function tenPopularPost(data, target) {
+  // A wrapper for the whole component
   let container = document.createElement("div");
   container.className = "poPost";
 
+  // Title of the component
   let title = document.createElement("h2");
   title.className = "poPost-title";
   title.innerHTML = "Popular Posts";
   container.appendChild(title);
 
+  // Body of the component
   let postContainer = document.createElement("div");
   postContainer.className = "poPost-container";
   data.forEach((element, index) => {
@@ -118,13 +132,20 @@ function tenPopularPost(data, target) {
     postContainer.appendChild(post);
   });
   container.appendChild(postContainer);
+
+  // Adding component to the target
   target.appendChild(container);
 }
 
+
+// onePost - Template for showing one post view
 function onePost(data, target) {
+
+  // Wrapper for the whole component
   let container = document.createElement("div");
   container.className = "showPost";
 
+  // Body of the component
   let content = `<div class="showPost-image">
           <img src="${data.p_url || data.p_image.url}" alt="image">
         </div>
@@ -149,8 +170,12 @@ function onePost(data, target) {
           <h2 class="showPost-commentTitle"><i class="fas fa-comments"></i> Comments</h2>
         </div>
        `;
+  
+  // Inserting the component to the target
   container.innerHTML = content;
   target.appendChild(container);
+
+  // Checking for Authenticated user. If there is no authenticated information, we will not allow general users leave any comments in the post, otherwise we will have a form to allow auth user do it.
    const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
   if(AuthData){
     let form = document.createElement("form");
@@ -161,6 +186,7 @@ function onePost(data, target) {
     container.appendChild(form);
   }
 
+  // Showing every single comment belong to the post.
   let comContent = document.createElement("ul");
   comContent.className = "showPost-comContent";
   data.p_comment.forEach((el) => {
@@ -177,11 +203,11 @@ function onePost(data, target) {
             `;
     comContent.appendChild(li);
   });
-
   let commentContainer = document.querySelector(".showPost-commentContainer");
   commentContainer.appendChild(comContent);
 }
 
+// authForm - Template view for the authenticated form
 function authForm(target) {
   let form = document.createElement("form");
   form.className = "auth-form";
@@ -195,6 +221,7 @@ function authForm(target) {
   target.appendChild(form);
 }
 
+// authUser - Template view for showing user name if user login successfully
 function authUser(target, data) {
   let user = document.createElement("div");
   user.className = "auth-user";
@@ -205,6 +232,7 @@ function authUser(target, data) {
   target.appendChild(user);
 }
 
+// authError - If user login fail, attach the error below the the form
 function authError(target) {
   let error = document.createElement("div");
   error.className = "auth-error";
@@ -212,9 +240,13 @@ function authError(target) {
   target.appendChild(error);
 }
 
+// allPost - Showing all the posts in database with vertically view
 function allPost(target, data) {
+  // Wrapper of the component
   let container = document.createElement("div");
   container.className = "allPost";
+
+  // Body of the component
   data.forEach((el) => {
     let card = document.createElement("div");
 
@@ -256,11 +288,18 @@ function allPost(target, data) {
           </div>`;
     container.appendChild(card);
   });
+
+  // Adding the component to the target
   target.appendChild(container);
 }
+
+// allPostAuth - Showing all the posts belong to current authenticated user
 function allPostAuth(target, data) {
+  // Wrapper of the component
   let container = document.createElement("div");
   container.className = "allPost";
+
+  // Body of the component
   data.forEach((el) => {
     let card = document.createElement("div");
 
@@ -303,9 +342,12 @@ function allPostAuth(target, data) {
           </div>`;
     container.appendChild(card);
   });
+
+  // Adding the component to the target
   target.appendChild(container);
 }
 
+// myPostErr - If we can not check for authenticated user, we will not allow anyone to view the myPost component, instead we require them to login first.
 function myPostErr(target){
   const container = document.createElement("div");
   container.className = "myPost-error";
@@ -313,9 +355,13 @@ function myPostErr(target){
   target.appendChild(container);
 }
 
+// creatingPostForm - Form template for creating new post 
 function creatingPostForm(target){
+  // Wrapper of the component
   const container = document.createElement("div");
   container.className = "myPostForm";
+
+  // Body of the component
   container.innerHTML = `<h3 class="myPostForm-title">Creating Your Post!</h3>
         <form class="form myPostForm-form">
           <div class="form-image">
@@ -332,8 +378,11 @@ function creatingPostForm(target){
           </div>
           <input type="submit" class="form_submit" value="Create a Post">
         </form>`;
+  
+  // Adding the component to the target
   target.appendChild(container);
 }
+
 
 export {
   threePost,

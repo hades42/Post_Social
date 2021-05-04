@@ -1,7 +1,6 @@
 /*
  *
- * Module: <name>
- * < short description here e.g. "This module implements main entry point...">
+ * Module: Control Module is responsible for connecting Model Module and View Module together.
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409
@@ -11,7 +10,10 @@ import { threePost, tenRecentPost, tenPopularPost, onePost,authForm,authUser, au
 import { Model } from "./model.js";
 import { splitHash } from "./util.js";
 import {Auth} from "./service.js";
+
+// When doing any http request and new data is created or data is modified, we will update the component on the website based on the link we hash.
 window.addEventListener("modelUpdated", (e) => {
+  // Hash the current link of the website
   let path = splitHash(window.location.hash);
   let target = document.querySelector(".target");
   let auth = document.querySelector(".authentication");
@@ -19,6 +21,8 @@ window.addEventListener("modelUpdated", (e) => {
   const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
 
   target.innerHTML = "";
+
+  // Each path will have different components on the website. Depending on which path we are currently in, we will show the right components.
   if (path.path === "posts") {
     let onep = Model.getPost(+path.id);
     onePost(onep, target);
@@ -41,48 +45,60 @@ window.addEventListener("modelUpdated", (e) => {
       allPostAuth(target, myPostRecents);
     }
   }
+
+  // Checking for authenticated user to show the proper component
   auth.innerHTML ="";
   if(AuthData){
     authUser(auth, AuthData.user);
   } else{
     authForm(auth);
   }
+
+  // Binding the functionality of every button appears on the website
   binding();
 });
 
+// When we add new likes, we have to update the data on the page.
 window.addEventListener("likeAdded", (e) => {
   Model.updatePosts();
 });
 
+// When we login, we have to updata the data on the page.
 window.addEventListener("userLogin", (e) =>{
   window.location.hash = "";
   Model.updatePosts();
 
 });
 
+// When we logout, we have to updata the data on the page
 window.addEventListener("userLogout", () => {
  window.location.hash = "";
  Model.updatePosts();
 });
 
+// If error happens when users try to login (not using correct username or password,...), showing the errors to notify them
 window.addEventListener("errorAuth", () => {
  let auth = document.querySelector(".authentication");
  authError(auth);
 });
 
+// When we add a new post, we have to update the data on the page
 window.addEventListener("postAdded", () => {
   Model.updatePosts();
 });
 
+// When we add a new comment, we have to update the data on the page
 window.addEventListener("commentAdded", () => {
   Model.updatePosts();
 });
 
+// When we delete a post, we have to updata the data on the page
 window.addEventListener("deletePost", () => {
   Model.updatePosts();
 });
 
 
+// binding - Binding the functionality for each button appears on the website
 function binding() {
   // for Like button
   let likeBtn = document.querySelectorAll(".Like");
@@ -120,15 +136,19 @@ function binding() {
   }
 }
 
+// logoutFunc - Delete the authenticated information from session table
 function logoutFunc(e){
   Auth.deleteData();
 }
 
+//likeFunc - Increasing the like of a post
+// Taking necessary attribute and passing to Model to update data
 function likeFunc(e) {
   let id = +e.target.parentNode.id;
   Model.addLike(id);
 }
 
+// loginForm - Taking value from the login form submit to strapi
 function loginForm(e){
   e.preventDefault();
   const username = e.target[0].value;
@@ -143,6 +163,7 @@ function loginForm(e){
   e.target[1].value ="";
 }
 
+//createPost - Taking necessary attribute to create new post and passing to Model to update data
 function createPost(e){
   e.preventDefault();
   const url_image = e.target[0].value;
@@ -162,6 +183,8 @@ function createPost(e){
   Model.addPost(imageData,dataPosted);
 }
 
+// Create a new comment on the post
+// Taking necessary attribute and passing to Model to update data
 function createComment(e){
   e.preventDefault();
   const comment = e.target[0].value;
@@ -178,6 +201,8 @@ function createComment(e){
   Model.addComment(dataPosted);
 }
 
+// Delete the post
+// Taking necessary attribute and passing to Model to update data
 function deletePost(e){
   Model.deletePost(e.target.id);
 }

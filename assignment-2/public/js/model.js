@@ -1,10 +1,7 @@
-import { Auth } from "./service.js";
-
 export { Model };
 /*
  *
- * Module: <name>
- * < short description here e.g. "This module implements ...">
+ * Module: Model module is responsible for handling and fetching data for the web application
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409
@@ -33,6 +30,7 @@ const Model = {
     comments: [],
   },
 
+  // Get authenticated information of user
   getAuth(){
      const AuthData = JSON.parse(sessionStorage.getItem("UserInfo"));
      return AuthData;
@@ -46,7 +44,6 @@ const Model = {
         fetch(this.commentsUrl)
           .then((res) => res.json())
           .then((data) => {
-            // console.log(data);
             this.setComments(data);
             let event = new CustomEvent("modelUpdated");
             window.dispatchEvent(event);
@@ -96,7 +93,6 @@ const Model = {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         postData = { ...postData, p_image: data[0] };
         fetch(this.postsUrl, {
           method: "POST",

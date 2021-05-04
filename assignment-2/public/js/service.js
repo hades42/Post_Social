@@ -1,7 +1,6 @@
 /*
  *
- * Module: <name>
- * < short description here e.g. "This module implements user authentication ...">
+ * Module: Service Module is responsible for handling and fetching authenticated information of users
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409

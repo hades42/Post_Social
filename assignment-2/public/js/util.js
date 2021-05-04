@@ -1,10 +1,10 @@
 /*
  *
- * Module: <name>
- * < short description here e.g. "This module implements the utility functions...">
+ * Module: Utility Module for storing general function of the website. 
+ * General function is kind of function which does not affect the logical action of the website.
  *
- * Student Name:
- * Student Number:
+ * Student Name: Van Nguyen Nguyen
+ * Student Number: 45515409
  *
  */
 
@@ -26,6 +26,8 @@ function splitHash(hash) {
     }
 }
 
+// getDate - only taking the dd/mm/yy format of the date data.
+// return a dd/mm/yy string
 function getDate(date){
     return date.slice(0,10);
 }
