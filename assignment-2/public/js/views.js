@@ -9,7 +9,6 @@
  */
 import { getDate } from "./util.js";
 import {Model} from "./model.js";
-import {Auth} from "./service.js"
 
 function threePost(data, target) {
   let postContainer = document.createElement("div");

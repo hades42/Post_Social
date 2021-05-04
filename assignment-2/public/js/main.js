@@ -171,7 +171,7 @@ function createComment(e){
     c_author: {
       id: AuthData.user.id,
     },
-    post: {
+    c_post: {
       id: e.target.id,
     },
   };
