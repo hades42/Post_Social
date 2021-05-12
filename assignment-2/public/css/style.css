@@ -11,7 +11,7 @@ body {
   font-family: "Poppins", sans-serif;
   position: relative;
   background-color: #edf2f6;
-  /* overflow: hidden; */
+  overflow-x: hidden;
 }
 header {
   margin: 1.5rem auto 0 auto;

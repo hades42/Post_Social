@@ -1,6 +1,6 @@
 /*
  *
- * Module: Control Module is responsible for connecting Model Module and View Module together.
+ * Module: Control Module is responsible for connecting Model Module, View Module and Service Module together.
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409
@@ -180,10 +180,12 @@ function createPost(e){
   };
   const imageData = new FormData();
   imageData.append("files", file_image);
-  Model.addPost(imageData,dataPosted);
+  if(url_image || file_image){
+    Model.addPost(imageData,dataPosted);
+  }
 }
 
-// Create a new comment on the post
+// createComment - Create a new comment on the post
 // Taking necessary attribute and passing to Model to update data
 function createComment(e){
   e.preventDefault();
@@ -201,7 +203,7 @@ function createComment(e){
   Model.addComment(dataPosted);
 }
 
-// Delete the post
+// deletePost - Delete the post
 // Taking necessary attribute and passing to Model to update data
 function deletePost(e){
   Model.deletePost(e.target.id);
@@ -211,7 +213,7 @@ function redraw() {
   Model.updatePosts();
 }
 
-window.onload = async function () {
+window.onload = function () {
   redraw();
 };
 window.onhashchange = redraw;
