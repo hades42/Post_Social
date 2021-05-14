@@ -77,7 +77,7 @@ describe('Model', function(){
         
     });  
 
-    // FR 2-4. Liking a Post: one more like added: in single View, 10 top and 10 recent
+    //FR 2-4. Liking a Post: one more like added: in single View, 10 top and 10 recent
     it("FR 2-4. Liking a Post: one more like added (Single View)", function(){
        // pick a post at random
        let a_post = Model.getRandomPosts(1);

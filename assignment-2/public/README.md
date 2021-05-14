@@ -43,3 +43,8 @@ Level 5:
     2. Delete a Post (as a logged in user) from the My Posts View: done
     3. Logging Out: done
 
+Cypress Test:
+    model-levels-12.spec-v3: 4/6
+    pages-levels-12.spec-v4: 6/10
+    levels-34-part1-ver4: 3/6
+    levels-34-part2-ver3: 3/4 

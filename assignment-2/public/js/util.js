@@ -1,7 +1,7 @@
 /*
  *
  * Module: Utility Module for storing general function of the website. 
- * General function is kind of function which does not affect the logical action of the website.
+ * General function is a kind of function which does not affect the logical action of the website.
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409

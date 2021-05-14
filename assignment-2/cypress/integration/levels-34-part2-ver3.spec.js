@@ -1,53 +1,26 @@
 /// <reference types="Cypress" />
 
-/* NOTE: before you start, make sure you can access 
+/* Filename: levels-34-part2-ver2.spec
+ *
+ * NOTE: before you start, make sure you can access 
  * http://localhost:1337/posts
  * http://localhost:1337/comments
  * http://localhost:1337/users
  * for /users see Permissions screenshots on iLearn next to this file
  * 
+ * ver 2: in (3) and (4) replaced expect(a_post).to.deep.equal(post_by_id);
+ * with comparing individual fields
+ * ver 3: in (3) and (4) replaced 
+ *  p_author
+ * with
+ *  p_author.username
+ * 
  */
+
 
 import { Model } from '../../public/js/model.js';
 
 var assert = chai.assert;
-
-// model.js:    getPost: function(postid) {
-//model.js:    getUserPosts: function(userid) {
-
-
-// describe('All Posts and comments', function(){   
-
-//     beforeEach(() => {
-//       cy.visit('http://localhost:1337/#!/all-posts');  
-
-//       cy.request('http://localhost:1337/posts').then((response) => {
-//         Model.data.posts  = response.body;
-//       });
-//     });
-
-//     it("FR 3-6 (2) All Posts: Comments in order most recent on top", function(){
-//       // The 'All Posts' view displays all posts with the most recent posts on top.
-//       let db_posts  = Model.getPosts();
-//       let all_posts = Model.getRecentPosts(db_posts.length);
-//       let lasttime = new Date(all_posts[0].published_at);
-//       for(let i=1; i<all_posts.length; i++) {
-//           let thistime = new Date(all_posts[i].published_at);
-//           if (all_posts[i].p_comment != null) {
-//              let num_comments = (all_posts[i].p_comment).length;
-//              let comment_list = all_posts[i].p_comment;
-//              // iterate through comments
-//              for(let j=0; j<num_comments; j++) {
-//                   expect(comment_list[j]).not.null;
-//              }
-//           }
-//           expect(thistime).to.be.below(lasttime)
-//           lasttime = thistime;
-//       }
-//      })
-//  });
-
-
 
 describe('My posts View', function(){   
 
@@ -146,7 +119,10 @@ describe('APIs', function(){
             let post_id  = db_all_posts[j].id;
             let post_from_api = Model.getPost(post_id);
             let db_post = db_all_posts[j];
-            expect(db_post).to.deep.equal(post_from_api);
+            expect(db_post.id).to.equal(post_from_api.id);
+            expect(db_post.p_caption).to.equal(post_from_api.p_caption);
+            expect(db_post.p_author.username).to.equal(post_from_api.p_author.username);
+            expect(db_post.p_likes).to.equal(post_from_api.p_likes);
           }
       }),
 
@@ -169,7 +145,10 @@ describe('APIs', function(){
                   let post_id  = my_posts[k].id;
                   let post_by_id = Model.getPost(post_id);
                   // posts are correctly extracted
-                  expect(a_post).to.deep.equal(post_by_id);
+                  expect(a_post.id).to.equal(post_by_id.id);
+                  expect(a_post.p_caption).to.equal(post_by_id.p_caption);
+                  expect(a_post.p_author.username).to.equal(post_by_id.p_author.username);
+                  expect(a_post.p_likes).to.equal(post_by_id.p_likes);
                 }
               }
             }    

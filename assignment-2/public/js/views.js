@@ -1,6 +1,6 @@
 /*
  *
- * Module: View module is responsible for creating all components for the data we want to show on the website
+ * Module: View module is responsible for creating all visual components for the data we want to show on the website
  *
  * Student Name: Van Nguyen Nguyen
  * Student Number: 45515409

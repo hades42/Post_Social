@@ -57,7 +57,6 @@ const Model = {
 
   // getPosts - return an array of post objects
   getPosts: function () {
-    // console.log(this.data.posts);
     //before that you may need to sort the posts by their timestamp
     let newData = this.data.posts.sort(
       (a, b) => new Date(b.published_at) - new Date(a.published_at)
@@ -68,7 +67,6 @@ const Model = {
   // getPost - return a single post given its id
   getPost: function (postid) {
     const found = this.data.posts.find((el) => el.id === postid);
-    //   console.log(found);
     return found;
   },
 
@@ -135,7 +133,6 @@ const Model = {
         return res.json();
       })
       .then((data) => {
-        this.setPosts(data);
         let event = new CustomEvent("likeAdded");
         window.dispatchEvent(event);
       });

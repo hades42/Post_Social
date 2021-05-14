@@ -6,8 +6,11 @@
  * http://localhost:1337/users
  * for /users see Permissions screenshots on iLearn next to this file
  * 
- * v2: removed / at the end of http://localhost:1337/#!/my_posts/
- * lines 94 and 139 
+ * ver 2: removed / at the end of http://localhost:1337/#!/my-posts/
+ * on lines 94 and 139 
+ * ver 3: for FR 4-4
+ * removed  test   cy.contains("c_post");
+ * ver 4: replaced my_posts with my-posts in URL lines 100 and 145
  */
 
 import { Model } from '../../public/js/model.js';
@@ -94,7 +97,7 @@ describe('User posts', function(){
 
   it("FR 3-7  Selects My Posts ", function(){
 
-    cy.visit('http://localhost:1337/#!/my_posts');
+    cy.visit('http://localhost:1337/#!/my-posts');
 
     var my_posts = null;
     var num_posts = 0;
@@ -139,7 +142,7 @@ describe('User posts', function(){
         // caption for the image and a button labelled 'Create a Post'.
         // The post form will have the id 'postform' and will use fields named 'p_url' and 'p_caption'.
         
-        cy.visit("http://localhost:1337/#!/my_posts"); 
+        cy.visit("http://localhost:1337/#!/my-posts"); 
         cy.get("form");
         cy.contains("button");
         cy.contains("Create a Post");
@@ -162,7 +165,7 @@ describe('User posts', function(){
        cy.contains("Add a Comment");
        cy.contains("button");
        cy.contains("c_content");
-       cy.contains("c_post");
+
    })
 });
 

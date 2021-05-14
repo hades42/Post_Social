@@ -1,5 +1,12 @@
 /// <reference types="Cypress" />
 
+/* File: pages-levels-12.spec-v4.js 
+ * Ver 4:
+ * FR 2-3 added lines below:
+ * let index = Model.data.posts[j].id;
+ * cy.visit('http://localhost:1337/#!/posts/'+index);
+ *
+*/
 import {Model} from '../../public/js/model.js';
 var assert = chai.assert;
 
@@ -108,15 +115,16 @@ describe("A Single Post View", function() {
         cy.visit('http://localhost:1337/#!/posts/'+index);
     })
 
-    // FR 2-3.-- single post: loads and contains correct info
+    // FR 2-3 -- Single post: loads and contains correct info
     // A Single Post View: the image (larger version instead of a thumbnail), 
     // caption, author, post date, number of likes, 'Like' button
     it("FR 2-3. Displays four posts at random in a Single Post view", function() {
 
         // pick three posts at random
         for(let i=0; i<4; i++) {
-            let j = Math.floor(Math.random() * Model.data.posts.length);
-            cy.visit('http://localhost:1337/#!/posts/'+ j);
+            let j = (Math.floor(Math.random() * (Model.data.posts.length)));
+            let index = Model.data.posts[j].id;
+            cy.visit('http://localhost:1337/#!/posts/'+index);
             cy.wait(100);
             cy.contains(/p_url|p_image/);
             cy.contains("p_caption");
